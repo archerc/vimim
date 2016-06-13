@@ -682,7 +682,7 @@ function! Vimim_page(key)
             let key = &pumheight ? page : '\<PageUp>'
         endif
     elseif key =~ "[][=-]" && empty(s:mode.onekey)
-        let key = g:punctuation(key)
+        let key = Vimim_punctuation(key)
     endif
     sil!exe 'sil!return "' . key . '"'
 endfunction
@@ -721,7 +721,7 @@ endfunction
 function! s:vimim_punctuation_maps()
     for _ in keys(s:all_evils)
         if _ !~ s:valid_keyboard
-            exe 'lnoremap<buffer><expr> '._.' g:punctuation("'._.'")'
+            exe 'lnoremap<buffer><expr> '._.' Vimim_punctuation("'._.'")'
         endif
     endfor
     if empty(s:ui.quote)
